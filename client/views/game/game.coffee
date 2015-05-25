@@ -19,7 +19,7 @@ Template.game.helpers
       do ->
         width: "#{100 / crumbleLength + padding}%"
         left: "#{100 / crumbleLength * i - padding}%"
-        top: "#{100 * Math.random() - height}%"
+        top: "#{Math.max(0, 100 * Math.random() - height)}%"
         height: "#{height}%"
     return crumbs
   finished: ->
