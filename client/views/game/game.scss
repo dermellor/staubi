@@ -1,7 +1,20 @@
 .crumbs {
-  height:10%;
   position:absolute;
   top:70%;
   background: url('/crumbs.png');
   background-size: contain;
+}
+
+.staubi {
+  position:absolute;
+  height:90%;
+  top:0;
+  width:30%;
+  transition: transform 1.5s;
+  .img {
+    width:100%;
+    height:100%;
+    background: url('/staubi.png') no-repeat center bottom;
+    background-size: contain;
+  }
 }
