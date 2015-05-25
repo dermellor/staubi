@@ -1,6 +1,6 @@
 crumbleLength = 5
 padding =  10
-height = 10
+height = 30
 
 Session.set('crumbleAmount', crumbleLength);
 
@@ -26,6 +26,9 @@ Template.game.helpers
     (getCrumbleAmount() == 0)
 
 
+Template.game.rendered = ->
+  $(document).bind 'touchmove', (event) ->
+    event.preventDefault();
 
 Template.game.events
   "click .crumbs" :  (event) ->
