@@ -1,16 +1,30 @@
-crumbLength = 5
+crumbleLength = 5
 padding =  10
 height = 10
 
+Session.set('crumbleAmount', crumbleLength);
+
+getCrumbleAmount = ->
+  Session.get('crumbleAmount')
+
+resetCrumbles = ->
+  Session.set('crumbleAmount', crumbleLength)
+
+checkCrumble = ->
+  Session.set('crumbleAmount', getCrumbleAmount() - 1)
+
 Template.game.helpers
   crumbs: ->
-    crumbs = for i in [0 ... crumbLength]
+    crumbs = for i in [0 ... crumbleLength]
       do ->
-        width: "#{100 / crumbLength + padding}%"
-        left: "#{100 / crumbLength * i - padding}%"
+        width: "#{100 / crumbleLength + padding}%"
+        left: "#{100 / crumbleLength * i - padding}%"
         top: "#{100 * Math.random() - height}%"
         height: "#{height}%"
     return crumbs
+  finished: ->
+    (getCrumbleAmount() == 0)
+
 
 
 Template.game.events
@@ -26,5 +40,8 @@ Template.game.events
     setTimeout ->
       staubiImage.find('.animated').addClass('wobble')
       $(event.target).addClass('zoomOutRight')
+      checkCrumble()
     , 1500
     vacuumSound.play()
+  "click .replay" : ->
+    resetCrumbles()

@@ -1,15 +1,31 @@
 <template name="game">
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton}}
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">Staubi</h1>
+    {{/contentFor}}
+
+
     {{#ionContent}}
-        {{#each crumbs}}
-            <div class="crumbs animated" style="top:{{top}};height:{{height}};left:{{left}};width:{{width}}">
+        {{#unless finished}}
+            {{#each crumbs}}
+                <div class="crumbs animated" style="top:{{top}};height:{{height}};left:{{left}};width:{{width}}">
+
+                </div>
+            {{/each}}
+            <div class="staubi">
+                <div class="animated img">
+
+                </div>
 
             </div>
-        {{/each}}
-        <div class="staubi">
-            <div class="animated img">
+        {{else}}
+            <button class="replay button button-block button-positive">
+                Replay
+            </button>
+        {{/unless}}
 
-            </div>
-
-        </div>
     {{/ionContent}}
 </template>
